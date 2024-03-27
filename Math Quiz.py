@@ -1,6 +1,5 @@
 import random
 
-
 def yes_no(question):
     while True:
         response = input(question).lower()
@@ -22,14 +21,14 @@ def instruction():
     print("      your total at the end of the game.                  ")
     print("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ ")
 
-
+# This bit of code displays the intro title
 def display_intro():
     title = " Quiz "
     print("_" * len(title))
     print(title)
     print("_" * len(title))
 
-
+# This code displays the menu
 def display_menu():
     menu_list = ["1. Addition", "2. Subtraction", "3. Multiplication", "4. Integer Division", "5. Exit"]
     print(menu_list[0])
@@ -38,33 +37,34 @@ def display_menu():
     print(menu_list[3])
     print(menu_list[4])
 
-
+# This code displays the separator
 def display_separator():
     print("-" * 24)
+# This code gets the users input
+def get_user_input(prompt):
+    while True:
+        try:
+            user_input = int(input(prompt))
+            if user_input < 6:
+                if user_input > 0:
+                    return user_input
+                else:
+                    get_user_input(prompt)
 
+            else:
+                get_user_input(prompt)
 
-def get_user_input():
-    error = "That's not an option, 1-5 Only."
-    try:
-        response = int(input("Enter your choice, 1-5: "))
+        except:
+            print("Thats not an option please choose between 1 and 5\n")
 
-        if response < 13:
-            print(error)
-        else:
-            print(response)
-
-    except ValueError:
-        print(error)
-
-
-
+# This code gets the users solution
 def get_user_solution(problem):
     print("Enter your answer \n")
     print(problem, end="")
     result = float(input(" = "))
     return result
 
-
+# This code checks the solution
 def check_solution(user_solution, solution, count):
     if user_solution == solution:
         count = count + 1
@@ -74,7 +74,7 @@ def check_solution(user_solution, solution, count):
         print("WRONG!.")
         return count
 
-
+# This code makes the questions
 def menu_option(index, count):
     number_one = random.randrange(1, 21)
     number_two = random.randrange(1, 21)
@@ -91,7 +91,7 @@ def menu_option(index, count):
         count = check_solution(user_solution, solution, count)
         return count
     elif index == 3:
-        problem = str(number_one) + " * " + str(number_two)
+        problem = str(number_one) + " x " + str(number_two)
         solution = number_one * number_two
         user_solution = get_user_solution(problem)
         count = check_solution(user_solution, solution, count)
@@ -104,7 +104,7 @@ def menu_option(index, count):
         count = check_solution(user_solution, solution, count)
         return count
 
-
+# This code displays the end result
 def display_result(total, correct):
     global percentage
     if total > 0:
@@ -115,50 +115,60 @@ def display_result(total, correct):
     print("You answered", total, "questions with", correct, "correct.")
     print("Your score is ", percentage, "%. Thank you.")
 
+# This code gets angry at user for wasting time
+def get_stuffed():
+    get_stuffed = yes_no("are you kidding me????? \n")
+    if get_stuffed == "quit" or get_stuffed == "bye":
+        print("I quit.")
+    else:
+        print("Don't waste my time.")
 
+# This code double checks whether the user wishes to play the game
+def game_sure():
+    game = yes_no("are you sure? \n")
+    if game == "no" or game == "n":
+        main()
+    elif game == "yes" or game == "y":
+        print({get_stuffed()})
+
+# This code is the main part that runs everything
 def main():
     display_intro()
     display_menu()
     display_separator()
 
-    option = get_user_input()
+    option = get_user_input('Please enter a number between 1 and 5\n')
     total = 0
     correct = 0
     while option != 5:
         total = total + 1
         correct = menu_option(option, correct)
-        option = get_user_input()
+        option = get_user_input('Please enter a number between 1 and 5\n')
 
     print("Exit the quiz.")
     display_separator()
     display_result(total, correct)
 
-
+# This code asks for name
 name = input("Hey! Whats your name?  \n").capitalize()
 if name:
     print("Welcome " + name + "!")
     print()
-
+# This code asks if user wants to read instructions
 response = yes_no("Do you want to read the instructions? \n").capitalize()
 
 if response == "Yes" or response == "Y":
     instruction()
 print()
 
+# This code asks if user wishes to play
 should_start = yes_no("would you like to start the game? \n")
 if should_start == "yes" or should_start == "y":
     print({main()})
 else:
-    print()
+    game_sure()
 
-game = yes_no("are you sure? \n")
-if game == "no" or game == "n":
-    print({main()})
-elif game == "yes" or game == "y":
-    print()
 
-get_stuffed = yes_no("are you kidding me????? \n")
-if get_stuffed == "quit" or get_stuffed == "bye":
-    print("I quit.")
-else:
-    print("Don't waste my time.")
+
+
+
