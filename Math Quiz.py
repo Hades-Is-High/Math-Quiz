@@ -167,8 +167,3 @@ if should_start == "yes" or should_start == "y":
     print({main()})
 else:
     game_sure()
-
-
-
-
-
