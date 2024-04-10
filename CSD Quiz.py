@@ -1,5 +1,6 @@
 import random
 
+
 def yes_no(question):
     while True:
         response = input(question).lower()
@@ -21,12 +22,14 @@ def instruction():
     print("      your total at the end of the game.                  ")
     print("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ ")
 
+
 # This bit of code displays the intro title
 def display_intro():
     title = " Quiz "
     print("_" * len(title))
     print(title)
     print("_" * len(title))
+
 
 # This code displays the menu
 def display_menu():
@@ -37,9 +40,12 @@ def display_menu():
     print(menu_list[3])
     print(menu_list[4])
 
+
 # This code displays the separator
 def display_separator():
     print("-" * 24)
+
+
 # This code gets the users input
 def get_user_input(prompt):
     while True:
@@ -55,7 +61,8 @@ def get_user_input(prompt):
                 get_user_input(prompt)
 
         except:
-            print("Thats not an option please choose between 1 and 5\n")
+            print("That's not an option please choose between 1 and 5\n")
+
 
 # This code gets the users solution
 def get_user_solution(problem):
@@ -64,6 +71,7 @@ def get_user_solution(problem):
     result = float(input(" = "))
     return result
 
+
 # This code checks the solution
 def check_solution(user_solution, solution, count):
     if user_solution == solution:
@@ -71,8 +79,9 @@ def check_solution(user_solution, solution, count):
         print("Correct.")
         return count
     else:
-        print("WRONG!.")
+        print("WRONG!")
         return count
+
 
 # This code makes the questions
 def menu_option(index, count):
@@ -104,6 +113,7 @@ def menu_option(index, count):
         count = check_solution(user_solution, solution, count)
         return count
 
+
 # This code displays the end result
 def display_result(total, correct):
     global percentage
@@ -115,6 +125,13 @@ def display_result(total, correct):
     print("You answered", total, "questions with", correct, "correct.")
     print("Your score is ", percentage, "%. Thank you.")
 
+    if percentage < 5:
+        print("You suck at math. :)")
+
+    elif percentage > 5:
+        print("Good Job, you don't suck at math.")
+
+
 # This code gets angry at user for wasting time
 def get_stuffed():
     get_stuffed = yes_no("are you kidding me????? \n")
@@ -123,6 +140,7 @@ def get_stuffed():
     else:
         print("Don't waste my time.")
 
+
 # This code double checks whether the user wishes to play the game
 def game_sure():
     game = yes_no("are you sure? \n")
@@ -130,6 +148,7 @@ def game_sure():
         main()
     elif game == "yes" or game == "y":
         print({get_stuffed()})
+
 
 # This code is the main part that runs everything
 def main():
@@ -149,10 +168,11 @@ def main():
     display_separator()
     display_result(total, correct)
 
+
 # This code asks for name
 name = input("Hey! Whats your name?  \n").capitalize()
 if name:
-    print("Welcome " + name + "!")
+    print()("Welcome " + name + "!")
     print()
 # This code asks if user wants to read instructions
 response = yes_no("Do you want to read the instructions? \n").capitalize()
