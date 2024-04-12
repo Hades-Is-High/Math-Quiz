@@ -1,6 +1,15 @@
 import random
 
+#Gives credit to me and a mate that helped with planning
+def credits():
+    print("Made By Kaden Adams\n")
+    print("With Help by Ash Clark")
+    print("")
 
+
+
+
+#checks if the user enters yes or no
 def yes_no(question):
     while True:
         response = input(question).lower()
@@ -9,11 +18,20 @@ def yes_no(question):
             return "yes"
         elif response == "no" or response == "n":
             return "no"
+        elif response == "credits" or response == "secret":
+            credits()
         else:
             print("please enter yes/no")
 
     # Main_Quiz
 
+def get_float(question):
+    while True:
+        try:
+            response = float(input(question))
+            return response
+        except:
+            print('ERROR: Please enter a number! not Words!')
 
 def instruction():
     print("_-_-_-_-_-_-_-_-_-_-_-_-INSTRUCTIONS-_-_-_-_-_-_-_-_-_-_-_")
@@ -68,7 +86,7 @@ def get_user_input(prompt):
 def get_user_solution(problem):
     print("Enter your answer \n")
     print(problem, end="")
-    result = float(input(" = "))
+    result = get_float(" = ")
     return result
 
 
@@ -172,7 +190,7 @@ def main():
 # This code asks for name
 name = input("Hey! Whats your name?  \n").capitalize()
 if name:
-    print()("Welcome " + name + "!")
+    print("Welcome " + name + "!")
     print()
 # This code asks if user wants to read instructions
 response = yes_no("Do you want to read the instructions? \n").capitalize()
